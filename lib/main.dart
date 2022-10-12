@@ -69,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
       style: optionStyle,
     ),
     Text(
+      //TO DO: Implement the page file first
       'Page de profile',
       style: optionStyle,
     ),
