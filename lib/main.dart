@@ -23,16 +23,17 @@ class MyApp extends StatelessWidget {
 
   final routerDelegate = BeamerDelegate(
       locationBuilder: RoutesLocationBuilder(routes: {
-        '/': (context, state, data) => SignInPage(),
-        '/register': (context, state, data) => SignUpPage(),
-        '/home': (context, state, data) => MyHomePage(title: ('Welcome'))
-      }));
+    '/': (context, state, data) => SignInPage(),
+    '/register': (context, state, data) => SignUpPage(),
+    '/home': (context, state, data) => MyHomePage(title: ('Welcome'))
+    // '/': (context, state, data) => MyHomePage(title: ('Welcome'))
+  }));
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Trivial pursuit',
+      title: 'Flutter trivial pursuit',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         backgroundColor: Colors.white,
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
       routeInformationParser: BeamerParser(),
       routerDelegate: routerDelegate,
       backButtonDispatcher:
-      BeamerBackButtonDispatcher(delegate: routerDelegate),
+          BeamerBackButtonDispatcher(delegate: routerDelegate),
     );
   }
 }
@@ -81,30 +82,20 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("BottomNavigationBar Example"),
+      body: Center(
+        child: _pages[_selectedIndex],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.contacts),
-            label: "Contacts",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.mail),
-            label: "Contacts",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Contacts",
-          )
+      bottomNavigationBar: CurvedNavigationBar(
+        key: _bottomNavigationKey,
+        backgroundColor: Colors.deepPurple,
+        items: const <Widget>[
+          Icon(Icons.quiz, size: 30),
+          Icon(Icons.bar_chart_sharp, size: 30),
+          Icon(Icons.person_rounded, size: 30),
         ],
-        onTap: (int index) {
-          this.onTapHandler(_selectedIndex);
-        },
+        index: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
-
+}
