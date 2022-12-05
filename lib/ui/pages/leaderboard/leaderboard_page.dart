@@ -45,12 +45,6 @@ class _LeaderboardState extends State<LeaderboardPage> {
               builder: (context, state) {
                 if (state is LeaderboardLoading) {
                   return Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/bg_app.png"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
                     child: const Center(
                       child: CircularProgressIndicator(
                         color: Colors.blue,
@@ -59,12 +53,7 @@ class _LeaderboardState extends State<LeaderboardPage> {
                   );
                 } else if (state is LeaderboardLoaded) {
                   return Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/bg_app.png"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+
                     child: Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Card(

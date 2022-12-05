@@ -104,12 +104,6 @@ class _SignInState extends State<GamesPage> {
                 }
                 if (state is Loading) {
                   return Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/bg_app.png"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
                     child: const Center(
                         child: Text("Chargement de la question...")),
                   );
@@ -119,12 +113,7 @@ class _SignInState extends State<GamesPage> {
                     WIDGET QUIZZ GAME MAIN PART
                      */
                     return Container(
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/bg_app.png"),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+
                       child: Center(
                         child: Form(
                           child: Center(
@@ -169,9 +158,8 @@ class _SignInState extends State<GamesPage> {
                                 child: showMessage(isWrongAnswer, goodAnswer),
                               ),
                               Card(
-                                child: SizedBox(
-                                  width: 200,
-                                  height: 40,
+
+
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Center(
@@ -184,7 +172,7 @@ class _SignInState extends State<GamesPage> {
                                     ),
                                   ),
                                 ),
-                              ),
+
                             ]),
                           ),
                           ),

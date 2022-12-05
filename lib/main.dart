@@ -85,15 +85,23 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: _pages[_selectedIndex],
       ),
-      bottomNavigationBar: CurvedNavigationBar(
-        key: _bottomNavigationKey,
-        backgroundColor: Colors.deepPurple,
-        items: const <Widget>[
-          Icon(Icons.quiz, size: 30),
-          Icon(Icons.bar_chart_sharp, size: 30),
-          Icon(Icons.person_rounded, size: 30),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.quiz),
+            label: 'Quizz',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.emoji_events),
+            label: 'Ranking',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_rounded),
+            label: 'Profile',
+          ),
         ],
-        index: _selectedIndex,
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
       ),
     );

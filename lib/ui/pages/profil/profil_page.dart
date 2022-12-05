@@ -76,12 +76,6 @@ class _ProfilPageState extends State<ProfilPage> {
                 }
                 if (state is Loaded) {
                   return Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/bg_app.png"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
                     child: Center(
                       child: Form(
                         child: Column(
