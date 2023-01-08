@@ -9,6 +9,7 @@ import 'package:fluttertrivialp/ui/pages/profil/profil_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fluttertrivialp/ui/pages/signIn/signin_page.dart';
 import 'package:fluttertrivialp/ui/pages/signUp/signup_page.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,6 @@ class MyApp extends StatelessWidget {
     '/': (context, state, data) => SignInPage(),
     '/register': (context, state, data) => SignUpPage(),
     '/home': (context, state, data) => MyHomePage(title: ('Welcome'))
-    // '/': (context, state, data) => MyHomePage(title: ('Welcome'))
   }));
 
   // This widget is the root of your application.

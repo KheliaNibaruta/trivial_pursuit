@@ -62,9 +62,9 @@ class _SignUpState extends State<SignUpPage> {
             create: (context) {
               cubit = SignUpCubit(
                   userRepository:
-                      RepositoryProvider.of<UserRepository>(context),
+                  RepositoryProvider.of<UserRepository>(context),
                   authRepository:
-                      RepositoryProvider.of<AuthRepository>(context));
+                  RepositoryProvider.of<AuthRepository>(context));
               return cubit!;
             },
             child: BlocConsumer<SignUpCubit, SignUpState>(
@@ -142,9 +142,9 @@ class _SignUpState extends State<SignUpPage> {
                                       child: InkWell(
                                           onTap: () async {
                                             XFile? image =
-                                                await _picker.pickImage(
-                                                    source:
-                                                        ImageSource.gallery);
+                                            await _picker.pickImage(
+                                                source:
+                                                ImageSource.gallery);
                                             setState(() {
                                               if (image != null) {
                                                 _userAvatar = File(image.path);
@@ -198,15 +198,15 @@ class _SignUpState extends State<SignUpPage> {
 
   Widget _displayAvatar() => _userAvatar.path == ""
       ? const SizedBox(
-          width: 200,
-          height: 200,
-          child:
-              CircleAvatar(child: Text("AVATAR"), backgroundColor: Colors.blue))
+      width: 200,
+      height: 200,
+      child:
+      CircleAvatar(child: Text("AVATAR"), backgroundColor: Colors.blue))
       : SizedBox(
-          width: 200,
-          height: 200,
-          child: CircleAvatar(
-            backgroundImage: FileImage(_userAvatar),
-          ),
-        );
+    width: 200,
+    height: 200,
+    child: CircleAvatar(
+      backgroundImage: FileImage(_userAvatar),
+    ),
+  );
 }

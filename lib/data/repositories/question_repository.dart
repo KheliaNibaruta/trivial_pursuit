@@ -5,6 +5,7 @@ import 'package:fluttertrivialp/data/remote/question_firebase.dart';
 import 'package:fluttertrivialp/data/remote/user_firebase.dart';
 import 'package:fluttertrivialp/data/entities/Results.dart';
 import 'package:fluttertrivialp/data/entities/Questions.dart';
+import 'package:intl/intl.dart';
 
 class QuestionRepository {
   static QuestionRepository? _instance;
@@ -33,7 +34,7 @@ class QuestionRepository {
   Future<List<Question>> getFilteredQuestions() async {
     List<Question> list = await _questionApi.getQuestionOfTheDay();
 
-    Results objectToReturn = Results(results: list, date: _getDate());
+    Results objectToReturn = Results(results: list, date: getDate());
 
     return list;
   }
@@ -41,20 +42,22 @@ class QuestionRepository {
   Future<List<Question>?> getQuestionOfTheDay() async {
 
     var questionsFromFirestore = await _questionFirestore.getQuestions();
-
-    if(questionsFromFirestore.size == 0) {
+    //print("test "+questionsFromFirestore.docs.single.id);
+    print("last doc : "+questionsFromFirestore.docs.last.id);
+    print("date : "+getDate());
+    if(questionsFromFirestore.docs.last.id != getDate()) {
       var questionsOfTheDay = await _questionApi.getQuestionOfTheDay();
-
+      print("fetch api");
       Results objectToReturn = Results(
           results: questionsOfTheDay,
-          date: _getDate()
+          date: getDate()
       );
 
       _questionFirestore.insertQuestion(objectToReturn);
 
       return questionsOfTheDay;
     } else {
-      var questionsData = questionsFromFirestore.docs.first.data();
+      var questionsData = questionsFromFirestore.docs.last.data();
       DateTime newDate = DateTime.parse(questionsData.date);
 
       if(newDate.day == DateTime.now().day && newDate.month == DateTime.now().month  && newDate.year == DateTime.now().year) {
@@ -66,7 +69,7 @@ class QuestionRepository {
 
         Results objectToReturn = Results(
             results: questionsOfTheDay,
-            date: _getDate()
+            date: getDate()
         );
 
         _questionFirestore.insertQuestion(objectToReturn);
@@ -75,9 +78,11 @@ class QuestionRepository {
       }
     }
   }
+}
+
 //Format de Date en ISO
-  String _getDate() {
-    DateTime today = DateTime.now();
-    return '${today.year}-${today.month}-${today.day}';
-  }
+String getDate() {
+  DateTime today = DateTime.now();
+  final DateFormat formatter = DateFormat('yyyy-MM-dd');
+  return formatter.format(today);
 }

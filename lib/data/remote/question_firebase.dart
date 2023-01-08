@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertrivialp/data/entities/Results.dart';
 import 'package:fluttertrivialp/data/repositories/question_repository.dart';
+import 'package:intl/intl.dart';
 
 class QuestionFirebase {
   static final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
@@ -12,7 +13,7 @@ class QuestionFirebase {
 
   static QuestionFirebase getInstance() {
     if (_instance == null) {
-      _questionRef = _firebaseFirestore.collection('questionsOfTheDay').withConverter(
+      _questionRef = _firebaseFirestore.collection('questionOfTheDay').withConverter(
           fromFirestore: (snapshot, _) => Results.fromJson(snapshot.data()!),
           toFirestore: (Question, _) => Question.toJson());
       _instance = QuestionFirebase._();
@@ -22,7 +23,8 @@ class QuestionFirebase {
 
   Future<void> insertQuestion(Results question) async {
     DateTime today = DateTime.now();
-    String dateToday = '${today.year}-${today.month}-${today.day}';
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+    String dateToday = formatter.format(today);
     QuerySnapshot<Results> questions = await _questionRef.get();
     await _questionRef.doc(dateToday).set(question);
   }

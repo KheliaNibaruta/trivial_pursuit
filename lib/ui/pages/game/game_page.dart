@@ -6,7 +6,6 @@ import 'package:fluttertrivialp/data/repositories/question_repository.dart';
 import 'package:fluttertrivialp/data/repositories/user_repository.dart';
 import 'package:fluttertrivialp/ui/pages/game/bloc/game_cubit.dart';
 import 'package:fluttertrivialp/ui/pages/game/bloc/game_state.dart';
-import 'package:swiping_card_deck/swiping_card_deck.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'dart:convert' show utf8;
 
@@ -105,13 +104,10 @@ class _SignInState extends State<GamesPage> {
                 if (state is Loading) {
                   return Container(
                     child: const Center(
-                        child: Text("Chargement de la question...")),
+                        child: Text("Chargement de la question")),
                   );
                 } else {
                   if (!isFinish) {
-                    /*
-                    WIDGET QUIZZ GAME MAIN PART
-                     */
                     return Container(
 
                       child: Center(
@@ -158,21 +154,13 @@ class _SignInState extends State<GamesPage> {
                                 child: showMessage(isWrongAnswer, goodAnswer),
                               ),
                               Card(
-
-
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Center(
                                       child: Text(
-                                        "Score : $score/10",
+                                        "$score/10",
                                         style: const TextStyle(
                                           fontSize: 20,
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
-
                             ]),
                           ),
                           ),
@@ -180,16 +168,8 @@ class _SignInState extends State<GamesPage> {
                       ),
                     );
                   } else {
-                    /*
-                    WIDGET FIN DE PARTIE
-                     */
+
                     return Container(
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/bg_app.png"),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
                       child: Center(
                         child: Column(
                           children: [
@@ -201,7 +181,7 @@ class _SignInState extends State<GamesPage> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(
                                     children: [
-                                      const Text("Partie terminée !",
+                                      const Text("Game Over !",
                                           style: TextStyle(fontSize: 20)),
                                       const Divider(
                                         height: 5,
@@ -262,9 +242,6 @@ class _SignInState extends State<GamesPage> {
 
   Widget showMessage(bool isWrongAnswer, String? goodAnswer) {
     if (isWrongAnswer) {
-      /*
-      CARD MAUVAISE REPONSE
-       */
       return Padding(
         padding: const EdgeInsets.all(5.0),
         child: Card(
@@ -274,7 +251,7 @@ class _SignInState extends State<GamesPage> {
             child: Column(
               children: [
                 const Text(
-                  'Mauvaise réponse...',
+                  'Mauvaise réponse !',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
@@ -297,9 +274,6 @@ class _SignInState extends State<GamesPage> {
         ),
       );
     } else {
-      /*
-      CARD BONNE REPONSE
-       */
       return Padding(
         padding: const EdgeInsets.all(5.0),
         child: Card(

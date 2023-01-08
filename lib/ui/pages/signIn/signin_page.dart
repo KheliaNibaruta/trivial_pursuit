@@ -45,6 +45,7 @@ class _SignInState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromRGBO(4, 0, 107, 50),
           title: Text("Login"),
         ),
         body: MultiRepositoryProvider(
@@ -85,7 +86,7 @@ class _SignInState extends State<SignInPage> {
                                     style: TextStyle(
                                         fontSize: 35,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.blueAccent),
+                                        color: Color.fromRGBO(4, 0, 107, 50)),
                                   ),
                                   TextField(
                                     controller: emailController,
@@ -94,6 +95,7 @@ class _SignInState extends State<SignInPage> {
                                         labelText: "Email"),
                                   ),
                                   TextField(
+                                    obscureText: true,
                                     controller: passwordController,
                                     decoration: const InputDecoration(
                                         border: UnderlineInputBorder(),
@@ -106,6 +108,7 @@ class _SignInState extends State<SignInPage> {
                                   ElevatedButton(
                                     onPressed: loginUser,
                                     child: const Text('Connexion'),
+
                                   ),
                                   const Divider(
                                     height: 2,
@@ -114,10 +117,10 @@ class _SignInState extends State<SignInPage> {
                                   InkWell(
                                     onTap: toRegisterPage,
                                     child: const Text(
-                                      "Créer un nouveau compte",
+                                      "S'inscrire",
                                       style: TextStyle(
                                         decoration: TextDecoration.underline,
-                                        color: Colors.blueAccent,
+                                        color: Color.fromRGBO(4, 0, 107, 50),
                                       ),
                                     ),
                                   ),
@@ -146,7 +149,7 @@ class _SignInState extends State<SignInPage> {
                                   const Text(
                                     "Connexion réussi !",
                                     style: TextStyle(
-                                        fontSize: 20, color: Colors.blueAccent),
+                                        fontSize: 20, color: Color.fromRGBO(4, 0, 107, 50)),
                                   ),
                                   const Divider(
                                     height: 10,
@@ -183,9 +186,9 @@ class _SignInState extends State<SignInPage> {
                               child: Column(
                                 children: [
                                   const Text(
-                                    "Vous êtes dejà authentifier sur un compte !",
+                                    "Vous êtes déjà connecté sur un compte !",
                                     style: TextStyle(
-                                        fontSize: 20, color: Colors.blueAccent),
+                                        fontSize: 20, color: Color.fromRGBO(4, 0, 107, 50)),
                                   ),
                                   const Divider(
                                     height: 10,

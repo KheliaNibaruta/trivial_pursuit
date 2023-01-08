@@ -1,6 +1,6 @@
 /// id : 0
 /// score : 0
-/// pseudo : "Corentin"
+/// pseudo : "Alex"
 /// avatar : "url"
 /// games : 1
 
@@ -11,12 +11,14 @@ class TriviaUser {
     String? pseudo,
     String? avatar,
     int? games,
+    String? date,
   }) {
     _id = id;
     _score = score;
     _pseudo = pseudo;
     _avatar = avatar;
     _games = games;
+    _date = date;
   }
 
   TriviaUser.fromJson(dynamic json) {
@@ -25,6 +27,7 @@ class TriviaUser {
     _pseudo = json['pseudo'];
     _avatar = json['avatar'];
     _games = json['games'];
+    _date = json['date'];
   }
 
   String? _id;
@@ -32,6 +35,7 @@ class TriviaUser {
   String? _pseudo;
   String? _avatar;
   int? _games;
+  String? _date;
 
   String? get id => _id;
 
@@ -43,8 +47,14 @@ class TriviaUser {
 
   int? get games => _games;
 
+  String? get date => _date;
+
   void setScore(int score) {
     _score = score;
+  }
+
+  void setDate(String date){
+  _date = date;
   }
 
   Map<String, dynamic> toJson() {
@@ -54,6 +64,7 @@ class TriviaUser {
     map['pseudo'] = _pseudo;
     map['avatar'] = _avatar;
     map['games'] = _games;
+    map['date'] = _date;
     return map;
   }
 }

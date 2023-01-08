@@ -14,7 +14,7 @@ class GameCubit extends Cubit<GamesState> {
   late Question _lastQuestion;
 
   List<Question>? listResults;
-
+  String dateActuelle = getDate();
   int score = 0;
   String selectedAnswer = '';
 
@@ -60,9 +60,9 @@ class GameCubit extends Cubit<GamesState> {
       String userDocId = await userRepository.getUserDocIdByUid(userId!);
       TriviaUser? user = await userRepository.getUserByUid(userId);
 
-      if (user != null) {
+      if (user != null && user.date!= dateActuelle) {
         user.setScore(user.score + score);
-
+        user.setDate(dateActuelle);
         userRepository.updateUser(user, userDocId);
       }
     } on Exception catch(exception) {

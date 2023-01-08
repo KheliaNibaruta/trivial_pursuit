@@ -151,7 +151,7 @@ class _ProfilPageState extends State<ProfilPage> {
   }
 
   Widget _displayAvatar() => _userAvatar.path == ""
-      ? const SizedBox(width: 150, height: 150, child: CircleAvatar(backgroundColor: Colors.blue, child: Text("AVATAR")))
+      ? const SizedBox(width: 150, height: 150, child: CircleAvatar(backgroundColor: Colors.indigo, child: Text("Photo")))
       : SizedBox(
     width: 150,
     height: 150,
