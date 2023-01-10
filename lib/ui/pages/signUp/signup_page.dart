@@ -38,7 +38,7 @@ class _SignUpState extends State<SignUpPage> {
           'avatar': _userAvatar.path,
         }),
         _userAvatarUpload);
-
+    context.beamToNamed('/');
   }
 
   void toHomePage() {
