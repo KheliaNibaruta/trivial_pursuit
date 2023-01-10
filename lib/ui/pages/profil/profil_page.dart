@@ -43,7 +43,7 @@ class _ProfilPageState extends State<ProfilPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Quizz"),
+          title: const Text("Profile"),
         ),
         body: MultiRepositoryProvider(
           providers: [

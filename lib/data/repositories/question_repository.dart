@@ -40,14 +40,12 @@ class QuestionRepository {
   }
 
   Future<List<Question>?> getQuestionOfTheDay() async {
-
     var questionsFromFirestore = await _questionFirestore.getQuestions();
-    //print("test "+questionsFromFirestore.docs.single.id);
-    print("last doc : "+questionsFromFirestore.docs.last.id);
-    print("date : "+getDate());
-    if(questionsFromFirestore.docs.last.id != getDate()) {
+
+    if (questionsFromFirestore.docs.isEmpty) {
+      print("ici");
       var questionsOfTheDay = await _questionApi.getQuestionOfTheDay();
-      print("fetch api");
+
       Results objectToReturn = Results(
           results: questionsOfTheDay,
           date: getDate()
@@ -57,10 +55,10 @@ class QuestionRepository {
 
       return questionsOfTheDay;
     } else {
-      var questionsData = questionsFromFirestore.docs.last.data();
+      var questionsData = questionsFromFirestore.docs.first.data();
       DateTime newDate = DateTime.parse(questionsData.date);
 
-      if(newDate.day == DateTime.now().day && newDate.month == DateTime.now().month  && newDate.year == DateTime.now().year) {
+      if (questionsFromFirestore.docs.first.id == getDate()) {
         return questionsData.results;
       } else {
         _questionFirestore.deleteQuestion();
@@ -79,7 +77,6 @@ class QuestionRepository {
     }
   }
 }
-
 //Format de Date en ISO
 String getDate() {
   DateTime today = DateTime.now();

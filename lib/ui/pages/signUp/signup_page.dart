@@ -38,11 +38,11 @@ class _SignUpState extends State<SignUpPage> {
           'avatar': _userAvatar.path,
         }),
         _userAvatarUpload);
-    context.beamToNamed('');
+
   }
 
   void toHomePage() {
-    context.beamToNamed('');
+    context.beamToNamed('/');
   }
 
   @override
@@ -71,7 +71,7 @@ class _SignUpState extends State<SignUpPage> {
               listener: (context, state) {
                 if (state is Error) {
                 } else if (State is Saved) {
-                  context.beamToNamed('');
+                  context.beamToNamed('/');
                 }
               },
               builder: (context, state) {
@@ -166,6 +166,7 @@ class _SignUpState extends State<SignUpPage> {
                                         labelText: "Email"),
                                   ),
                                   TextField(
+                                    obscureText: true,
                                     controller: passwordController,
                                     decoration: const InputDecoration(
                                         border: UnderlineInputBorder(),
